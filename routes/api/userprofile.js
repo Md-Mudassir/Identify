@@ -92,4 +92,45 @@ router.get("/", async (req, res) => {
   }
 });
 
+//@route  GET api/userprofile/:user_id
+//@desctiption Get user profile by Id
+//@access Public
+router.get("/:user_id", async (req, res) => {
+  try {
+    const userprofile = await UserProfile.findOne({
+      user: req.params.user_id
+    }).populate("user", ["name", "avatar"]);
+    if (!userprofile)
+      return res.status(400).json({ msg: "User profile does not exist" });
+    res.json(userprofile);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId")
+      return res.status(400).json({ msg: "User profile does not exist" });
+    res.status(500).send("Server error");
+  }
+});
+
+//@route  GET api/userprofile
+//@desctiption Delet profile,user & child profile
+//@access Private
+router.delete("/", auth, async (req, res) => {
+  try {
+    //Removes user's child profile
+
+    //Remove user profile
+    await UserProfile.findOneAndRemove({
+      user: req.user.id
+    });
+    //Remove User
+    await User.findOneAndRemove({
+      _id: req.user.id
+    });
+    res.json({ msg: "User deleted" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 module.exports = router;
