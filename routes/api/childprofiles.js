@@ -53,6 +53,9 @@ router.post("/", auth, upload.single("img"), async (req, res, next) => {
       age: req.body.age,
       gaurdian: req.user.id,
       img: url + "/public/images/" + req.file.filename,
+      details: req.body.details,
+      city: req.body.city,
+      status: req.body.status,
       name: req.user.id,
       avatar: user.avatar
     });

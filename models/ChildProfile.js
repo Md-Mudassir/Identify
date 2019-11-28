@@ -25,19 +25,9 @@ const ChildProfileSchema = new Schema({
   city: {
     type: String
   },
-  status: [
-    {
-      missing: {
-        type: String
-      },
-      found: {
-        type: String
-      },
-      sighted: {
-        type: String
-      }
-    }
-  ],
+  status: {
+    type: String
+  },
   gaurdian: {
     type: String
   },
