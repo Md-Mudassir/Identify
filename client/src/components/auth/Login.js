@@ -44,7 +44,7 @@ const Login = () => {
             minLength="6"
           />
         </div>
-        <input type="submit" className="btn btn-danger" value="Login" />
+        <input type="submit" className="btn btn-dark" value="Login" />
       </form>
       <p className="my-1">
         Don't have an account? <Link to="/register">Register</Link>

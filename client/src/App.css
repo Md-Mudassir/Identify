@@ -179,15 +179,15 @@ img {
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
+   border-bottom: 2px solid rgb(255, 255, 255);
 }
 
 .btn-danger,
 .bg-danger,
 .badge-danger,
 .alert-danger {
-  background: rgb(0, 0, 0);
+  background:var(--danger-color);
   color: #fff;
-  border: 2px solid rgb(255, 255, 255);
 }
 
 .btn-success,

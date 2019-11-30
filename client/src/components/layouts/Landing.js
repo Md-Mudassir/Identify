@@ -11,7 +11,7 @@ const Landing = () => {
             Help them reunite with their loved ones.
           </h3>
           <div className="buttons">
-            <Link to="/register" className="btn btn-danger">
+            <Link to="/register" className="btn btn-dark">
               Get Started
             </Link>
           </div>
