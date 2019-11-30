@@ -2,7 +2,7 @@
 :root {
   --primary-color: #17a2b8;
   --dark-color: #000000;
-  --light-color: #f4f4f4;
+  --light-color: #ffffff;
   --danger-color: #dc3545;
   --success-color: #28a745;
 }
@@ -170,6 +170,7 @@ img {
 .alert-light {
   background: var(--light-color);
   color: #333;
+  border: 2px solid rgb(0, 0, 0);
 }
 
 .btn-dark,
@@ -184,8 +185,9 @@ img {
 .bg-danger,
 .badge-danger,
 .alert-danger {
-  background: var(--danger-color);
+  background: rgb(0, 0, 0);
   color: #fff;
+  border: 2px solid rgb(255, 255, 255);
 }
 
 .btn-success,
@@ -308,7 +310,7 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 1px var(--light-color);
   opacity: 0.9;
 }
 
@@ -575,3 +577,26 @@ button {
     padding: 0.3rem 0.4rem;
   }
 }
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+} */

@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
 import axios from "axios";
 
 const Register = () => {
@@ -101,4 +103,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default connect(null)(Register);
