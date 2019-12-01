@@ -1,4 +1,8 @@
-import { GET_USERPROFILE, USERPROFILE_ERROR } from "../actions/types";
+import {
+  GET_USERPROFILE,
+  CLEAR_USERPROFILE,
+  USERPROFILE_ERROR
+} from "../actions/types";
 
 const initialState = {
   userProfile: null,
@@ -21,6 +25,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: payload,
+        loading: false
+      };
+    case CLEAR_USERPROFILE:
+      return {
+        ...state,
+        userProfile: null,
         loading: false
       };
     default:
