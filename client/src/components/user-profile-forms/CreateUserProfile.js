@@ -1,8 +1,10 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
+import { createUserProfile } from "../../actions/userProfile";
 
-const CreateUserProfile = props => {
+const CreateUserProfile = ({ createUserProfile, history }) => {
   const [formData, setFormData] = useState({
     adhaarNo: "",
     phone: "",
@@ -13,16 +15,23 @@ const CreateUserProfile = props => {
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
+    createUserProfile(formData, history);
+  };
+
   return (
     <Fragment>
       <h1 className="large text-dark">Create Your Profile</h1>
 
-      <form className="form">
+      <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
             placeholder="Adhaar Number"
             name="adhaarNo"
+            value={adhaarNo}
             onChange={e => onChange(e)}
             required
           />
@@ -36,6 +45,7 @@ const CreateUserProfile = props => {
             type="text"
             placeholder="Phone Number"
             name="phone"
+            value={phone}
             onChange={e => onChange(e)}
             required
           />
@@ -47,6 +57,7 @@ const CreateUserProfile = props => {
           <input
             type="text"
             placeholder="Address"
+            value={address}
             onChange={e => onChange(e)}
             name="address"
             required
@@ -63,6 +74,10 @@ const CreateUserProfile = props => {
   );
 };
 
-CreateUserProfile.propTypes = {};
+CreateUserProfile.propTypes = {
+  userCreateProfile: PropTypes.func.isRequired
+};
 
-export default CreateUserProfile;
+export default connect(null, { createUserProfile })(
+  withRouter(CreateUserProfile)
+);
