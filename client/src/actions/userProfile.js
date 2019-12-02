@@ -28,6 +28,7 @@ export const getCurrentProfile = () => async dispatch => {
 //Get all user profiles
 export const getCurrentProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_USERPROFILE });
+
   try {
     const res = await axios.get("api/userprofile");
 
@@ -46,7 +47,7 @@ export const getCurrentProfiles = () => async dispatch => {
 //Get user profile by id
 export const getCurrentProfileById = userId => async dispatch => {
   try {
-    const res = await axios.get(`api/userprofile/user/${userId}`);
+    const res = await axios.get(`api/userprofile/${userId}`);
 
     dispatch({
       type: GET_USERPROFILE,
