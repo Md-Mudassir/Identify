@@ -10,6 +10,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateUserProfile from "./components/user-profile-forms/CreateUserProfile";
 import EditUserProfile from "./components/user-profile-forms/EditProfile";
 import UserProfiles from "./components/UserProfiles/UserProfiles";
+import Child from "./components/childrens/Child";
 import PrivateRoute from "./components/routing/PrivateRoute";
 //Redux
 import { Provider } from "react-redux";
@@ -49,6 +50,7 @@ const App = () => {
                 path="/edit-profile"
                 component={EditUserProfile}
               />
+              <PrivateRoute exact path="/childprofiles" component={Child} />
             </Switch>
           </section>
         </Fragment>

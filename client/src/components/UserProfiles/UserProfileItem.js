@@ -15,7 +15,7 @@ const UserProfileItem = ({
       <div>
         <h3>Name: {name}</h3>
         <p>Address: {address}</p>
-        <p>Contact:     {phone}</p>
+        <p>Contact: {phone}</p>
         <Link to={`/userprofile/${_id}`} className="btn btn-dark">
           View Profile
         </Link>

@@ -11,7 +11,7 @@ const UserProfiles = ({
 }) => {
   useEffect(() => {
     getCurrentProfiles();
-  }, []);
+  }, [getCurrentProfiles]);
   return (
     <Fragment>
       {loading ? (

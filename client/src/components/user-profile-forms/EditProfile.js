@@ -26,7 +26,7 @@ const EditUserProfile = ({
       phone: loading || !userProfile.phone ? "" : userProfile.phone,
       address: loading || !userProfile.adhaarNo ? "" : userProfile.adhaarNo
     });
-  }, []);
+  }, [getCurrentProfile]);
 
   const { address, adhaarNo, phone } = formData;
 
@@ -92,7 +92,7 @@ const EditUserProfile = ({
 };
 
 EditUserProfile.propTypes = {
-  userCreateProfile: PropTypes.func.isRequired,
+  //   userCreateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.object.isRequired
 };
