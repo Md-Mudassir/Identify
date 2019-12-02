@@ -1,15 +1,32 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { createUserProfile } from "../../actions/userProfile";
+import {
+  createUserProfile,
+  getCurrentProfile
+} from "../../actions/userProfile";
 
-const CreateUserProfile = ({ createUserProfile, history }) => {
+const EditUserProfile = ({
+  userProfile: { userProfile, loading },
+  createUserProfile,
+  history
+}) => {
   const [formData, setFormData] = useState({
     adhaarNo: "",
     phone: "",
     address: ""
   });
+
+  useEffect(() => {
+    getCurrentProfile();
+
+    setFormData({
+      adhaarNo: loading || !userProfile.adhaarNo ? "" : userProfile.adhaarNo,
+      phone: loading || !userProfile.phone ? "" : userProfile.phone,
+      address: loading || !userProfile.adhaarNo ? "" : userProfile.adhaarNo
+    });
+  }, []);
 
   const { address, adhaarNo, phone } = formData;
 
@@ -18,7 +35,7 @@ const CreateUserProfile = ({ createUserProfile, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    createUserProfile(formData, history);
+    createUserProfile(formData, history, true);
   };
 
   return (
@@ -74,10 +91,17 @@ const CreateUserProfile = ({ createUserProfile, history }) => {
   );
 };
 
-CreateUserProfile.propTypes = {
-  userCreateProfile: PropTypes.func.isRequired
+EditUserProfile.propTypes = {
+  userCreateProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  userProfile: PropTypes.object.isRequired
 };
 
-export default connect(null, { createUserProfile })(
-  withRouter(CreateUserProfile)
-);
+const mapStateToProps = state => ({
+  userProfile: state.userProfile
+});
+
+export default connect(mapStateToProps, {
+  createUserProfile,
+  getCurrentProfile
+})(withRouter(EditUserProfile));
