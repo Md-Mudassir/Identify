@@ -1,12 +1,52 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 
-import { GET_USERPROFILE, USERPROFILE_ERROR } from "./types";
+import {
+  GET_USERPROFILE,
+  USERPROFILE_ERROR,
+  CLEAR_USERPROFILE,
+  GET_USERPROFILES
+} from "./types";
 
 //Get current user profile
 export const getCurrentProfile = () => async dispatch => {
   try {
     const res = await axios.get("api/userprofile/me");
+
+    dispatch({
+      type: GET_USERPROFILE,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: USERPROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Get all user profiles
+export const getCurrentProfiles = () => async dispatch => {
+  dispatch({ type: CLEAR_USERPROFILE });
+  try {
+    const res = await axios.get("api/userprofile");
+
+    dispatch({
+      type: GET_USERPROFILES,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: USERPROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Get user profile by id
+export const getCurrentProfileById = userId => async dispatch => {
+  try {
+    const res = await axios.get(`api/userprofile/user/${userId}`);
 
     dispatch({
       type: GET_USERPROFILE,
